@@ -10,6 +10,9 @@ This is a collection of samples showing how to do the same things with [Google M
 
 [![Search for places](assets/search-places.png)](https://esri-es.github.io/gmaps-arcgis/places/places.html)
 
+## Missing samples
+
+Feel free to request more samples using the [issues of this repo](https://github.com/esri-es/gmaps-arcgis/issues).
 
 ## Configure
 
