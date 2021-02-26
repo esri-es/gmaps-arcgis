@@ -1,0 +1,44 @@
+<html>
+    <head>
+        <style>#mapDiv,body,html{width:100%; height:400px;margin:0;padding:0}</style>
+    </head>
+    <body>
+        <h1>Drawing marker in ArcGIS</h1>
+        <div id="mapDiv"></div>
+        <script type="module">
+            import MapView from "https://js.arcgis.com/4.18/@arcgis/core/views/MapView.js";
+
+            const view = new MapView({
+                container: "mapDiv",
+                map: {basemap: "streets-navigation-vector"},
+                center: {
+                    latitude: 32.7353,
+                    longitude: -117.1490
+                },
+                zoom: 11
+            });
+
+            view.graphics.add({
+                symbol: {
+                    type: "web-style",
+                    name: "park",
+                    styleName: "Esri2DPointSymbolsStyle"
+                },
+                geometry: {
+                    type: "point",
+                    latitude: 32.7353,
+                    longitude: -117.1490
+                },
+                popupTemplate: {
+                    title: "San Diego Zoo",
+                    content: "<h1>San Diego Zoo</h1>" +
+                    "The <a href='http://zoo.sandiegozoo.org/'>San Diego Zoo</a> " +
+                    " in Balboa Park houses over 3,700 animals.<p><p>" +
+                    "<img src='https://visitoceanside.org/wp-content/uploads/2013/01/SanDiegoZoo.jpg' alt='San Diego Zoo' height='150'>"
+                }
+            });
+        </script>
+        <script src="https://js.arcgis.com/4.18/"></script>
+        <link rel="stylesheet" href="https://js.arcgis.com/4.18/esri/css/main.css">
+    </body>
+</html>

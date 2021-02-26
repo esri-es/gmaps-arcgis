@@ -1,0 +1,48 @@
+<html>
+    <head>
+        <style>#mapDiv{width:100%; height:400px}</style>
+    </head>
+    <body>
+        <h1>Drawing marker in ArcGIS</h1>
+        <div id="mapDiv"></div>
+        <script src="https://js.arcgis.com/4.18/"></script>
+        <link rel="stylesheet" href="https://js.arcgis.com/4.18/esri/css/main.css">
+        <script type="module">
+            import MapView from "https://js.arcgis.com/4.18/@arcgis/core/views/MapView.js";
+            import config from "https://js.arcgis.com/4.18/@arcgis/core/config.js";
+
+            import customSymbols from "./symbols.js";
+
+            import {API_KEY_ARCGIS} from "../config.js"
+            config.apiKey = API_KEY_ARCGIS();
+
+            const view = new MapView({
+                container: "mapDiv",
+                map: { basemap: "arcgis-navigation" }, // more: https://developers.arcgis.com/javascript/latest/api-reference/esri-Map.html#basemap
+                // map: {basemap: "streets-navigation-vector"},
+                center: {
+                    latitude: 32.7353,
+                    longitude: -117.1490
+                },
+                zoom: 11
+            });
+
+            view.graphics.add({
+                // symbol: customSymbols.webstyle(),
+                symbol: customSymbols.marker(),
+                geometry: {
+                    type: "point",
+                    longitude: -117.1490,
+                    latitude: 32.7353
+                },
+                popupTemplate: {
+                    title: "San Diego Zoo",
+                    content: "<h1>San Diego Zoo</h1>" +
+                    "The <a href='http://zoo.sandiegozoo.org/'>San Diego Zoo</a> " +
+                    " in Balboa Park houses over 3,700 animals.<p><p>" +
+                    "<img src='https://visitoceanside.org/wp-content/uploads/2013/01/SanDiegoZoo.jpg' alt='San Diego Zoo' height='150'>"
+                }
+            });
+        </script>
+    </body>
+</html>

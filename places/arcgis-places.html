@@ -1,0 +1,53 @@
+<html>
+    <head>
+        <style>#mapDiv,body,html{width:100%; height:400px;margin:0;padding:0}</style>
+    </head>
+    <body>
+        <h1>Search places in ArcGIS</h1>
+        <div id="mapDiv"></div>
+        <script type="module">
+            import MapView from "https://js.arcgis.com/4.18/@arcgis/core/views/MapView.js";
+            import Locator from "https://js.arcgis.com/4.18/@arcgis/core/tasks/Locator.js";
+
+            const searchCenter = {latitude: 40.0150, longitude: -105.2705};
+
+            const view = new MapView({
+                container: "mapDiv",
+                map: {basemap: "streets-navigation-vector"},
+                center: searchCenter,
+                zoom: 14
+            });
+
+            const locator = new Locator({
+                url: "https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer"
+            });
+
+            locator.addressToLocations({
+                location: {
+                    type: "point",
+                    ...searchCenter
+                },
+                distance: 500,
+                categories: ["Food"]
+            }).then(function(results) {
+                results.forEach(place => {
+                    view.graphics.add({
+                        symbol: {
+                            type: "web-style",
+                            name: "restaurant",
+                            styleName: "Esri2DPointSymbolsStyle"
+                        },
+                        geometry: {
+                            type: "point",
+                            latitude: place.location.latitude,
+                            longitude: place.location.longitude
+                        }
+                    });
+                })
+
+            })
+        </script>
+        <script src="https://js.arcgis.com/4.18/"></script>
+        <link rel="stylesheet" href="https://js.arcgis.com/4.18/esri/css/main.css">
+    </body>
+</html>

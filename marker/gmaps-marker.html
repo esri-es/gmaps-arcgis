@@ -1,0 +1,50 @@
+<html>
+    <head>
+        <style>#mapDiv,body,html{width:100%; height:400px;margin:0;padding:0}</style>
+    </head>
+    <body>
+        <h1>Drawing marker in Google Maps</h1>
+        <div id="mapDiv"></div>
+        <script>
+            function initMap() {
+                const map = new google.maps.Map(document.getElementById('mapDiv'), {
+                    mapTypeId: 'roadmap',
+                    center: {
+                        lat: 32.7353,
+                        lng: -117.1490
+                    },
+                    zoom: 12
+                });
+
+                const marker = new google.maps.Marker({
+                    position: {
+                        lat: 32.7353,
+                        lng: -117.1490
+                    },
+                    title: "San Diego Zoo",
+                    map: map
+                });
+
+                const infowindow = new google.maps.InfoWindow({
+                    content: "<h1>San Diego Zoo</h1>" +
+                    "The <a href='http://zoo.sandiegozoo.org/'>San Diego Zoo</a> " +
+                    " in Balboa Park houses over 3,700 animals.<p><p>" +
+                    "<img src='https://visitoceanside.org/wp-content/uploads/2013/01/SanDiegoZoo.jpg' alt='San Diego Zoo' height='150'>"
+                });
+
+                marker.addListener('click', function() {
+                    infowindow.open(map, marker);
+                });
+            }
+        </script>
+
+        <script type="module">
+            import {API_KEY_GMAPS} from "../config.js"
+            var script = document.createElement('script');
+            script.setAttribute('type', 'text/javascript');
+            script.setAttribute('src', `https://maps.googleapis.com/maps/api/js?key=${API_KEY_GMAPS()}&callback=initMap`);
+            var head = document.getElementsByTagName('head').item(0);
+            head.appendChild(script);
+        </script>
+    </body>
+</html>
