@@ -1,6 +1,6 @@
 # Code samples: Google Map <> ArcGIS
 
-This is a collection of samples showing how to do the same things with Google Maps and ArcGIS
+This is a collection of samples showing how to do the same things with [Google Maps JavaScript API](https://developers.google.com/maps/documentation/javascript/overview) and [ArcGIS API for JavaScript](https://developers.arcgis.com/javascript/latest/)
 
 ## [Draw a marker](https://esri-es.github.io/gmaps-arcgis/marker/marker.html)
 
