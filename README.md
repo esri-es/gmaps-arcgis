@@ -1,9 +1,15 @@
-# How to: Google Map <> ArcGIS
+# Code samples: Google Map <> ArcGIS
 
 This is a collection of samples showing how to do the same things with Google Maps and ArcGIS
 
-* [Draw a marker](#)
-* [Search for places](#)
+## Draw a marker
+
+![Draw a marker](assets/marker.png)
+
+## Search for places
+
+![Search for places](assets/search-places.png)
+
 
 ## Configure
 
